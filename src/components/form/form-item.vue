@@ -12,7 +12,11 @@ import emit from '../../utils/emit.js'
 export default {
     name:'iFormItem',
     data(){
-
+        return {
+            isRequired:false,   //是否必须
+            validateStatus:'',//校验状态
+            validateMessage:''  //校验提示信息
+        }
     },
     mixins:[emit],
     props:{
@@ -22,6 +26,20 @@ export default {
         },
         prop:{
             type:String
+        }
+    },
+    methods:{
+        //初始化设置规则，是否必须校验等，包括监听input组件派发的输入事件和失焦事件
+        setRules(){
+            let rules = this.getRules();
+            if(rules.length){
+                rules.foeEach(rule => {
+                    this.isRequired = rule.isRequired
+                })
+            }
+        },
+        getRules(){
+
         }
     },
     mounted(){

@@ -31,8 +31,8 @@
             handleInput (event) {
                 const value = event.target.value;
                 this.currentValue = value;
-                this.$emit('input', value);
-                this.dispatch('iFormItem', 'on-form-change', value);
+                this.$emit('input', value); //实时调用input事件
+                this.dispatch('iFormItem', 'on-form-change', value); //想formitem组件派发事件
             },
             handleBlur () {
                 this.dispatch('iFormItem', 'on-form-blur', this.currentValue);
